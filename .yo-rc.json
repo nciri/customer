@@ -1,0 +1,38 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.buyden.customer"
+    },
+    "jhipsterVersion": "6.10.3",
+    "applicationType": "microservice",
+    "baseName": "customer",
+    "packageName": "com.buyden.customer",
+    "packageFolder": "com/buyden/customer",
+    "serverPort": "8082",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": true,
+    "jwtSecretKey": "MDc5ZDdmOWYzNTY5OGM3NWMyYThmNDk0ZTc3Y2IzYjE1NTJmN2M5NDNlZDI5ODE5ZDQyNzVkNDQwYjFhM2IwYjgyZmU3Y2M3ODA1M2ZiNDYwZTZjMGU3NTYyZWUxNDBkMjQ1MDA0Y2JkNTYyYzk2NTg1ZjZiNTkxODFmZWQ3Yzk=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1601766994850,
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
