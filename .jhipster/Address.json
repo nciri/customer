@@ -1,0 +1,49 @@
+{
+  "name": "Address",
+  "fields": [
+    {
+      "fieldName": "line1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "line2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "line3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "zipcode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "country",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customerAddress",
+      "otherEntityRelationshipName": "address",
+      "relationshipName": "customerAddress"
+    }
+  ],
+  "changelogDate": "20201004011613",
+  "entityTableName": "address",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customer",
+  "applications": "*",
+  "microserviceName": "customer"
+}

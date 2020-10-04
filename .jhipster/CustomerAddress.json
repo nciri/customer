@@ -1,0 +1,43 @@
+{
+  "name": "CustomerAddress",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "AddressType",
+      "fieldValues": "DELIVERY,BILLING"
+    },
+    {
+      "fieldName": "state",
+      "fieldType": "AddressStatus",
+      "fieldValues": "ACTIVE,INACTIVE"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "customerAddress",
+      "relationshipName": "customer",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "address",
+      "otherEntityRelationshipName": "customerAddress",
+      "relationshipName": "address",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201004012013",
+  "entityTableName": "customer_address",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customer",
+  "applications": "*",
+  "microserviceName": "customer"
+}

@@ -1,9 +1,12 @@
 package com.buyden.customer.web.rest.errors;
 
+import com.buyden.customer.CustomerApp;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.web.util.HeaderUtil;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.dao.DataAccessException;
@@ -41,6 +44,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait {
 
+    private static final Logger log = LoggerFactory.getLogger(ExceptionTranslator.class);
     private static final String FIELD_ERRORS_KEY = "fieldErrors";
     private static final String MESSAGE_KEY = "message";
     private static final String PATH_KEY = "path";
@@ -67,12 +71,19 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         if (!(problem instanceof ConstraintViolationProblem || problem instanceof DefaultProblem)) {
             return entity;
         }
-        ProblemBuilder builder = Problem.builder()
-            .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
-            .withStatus(problem.getStatus())
-            .withTitle(problem.getTitle())
-            .with(PATH_KEY, request.getNativeRequest(HttpServletRequest.class).getRequestURI());
-
+        ProblemBuilder builder = Problem.builder();
+        try {
+            String requestUri = request.getNativeRequest(HttpServletRequest.class).getRequestURI();
+            builder
+                .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
+                .withStatus(problem.getStatus())
+                .withTitle(problem.getTitle())
+                .with(PATH_KEY, requestUri);
+        }
+        catch (NullPointerException e) {
+            log.info("Invalid URI.");
+            log.trace("Invalid URI trace.", e);
+        }
         if (problem instanceof ConstraintViolationProblem) {
             builder
                 .with(VIOLATIONS_KEY, ((ConstraintViolationProblem) problem).getViolations())
@@ -123,7 +134,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
 
     @Override
     public ProblemBuilder prepare(final Throwable throwable, final StatusType status, final URI type) {
-        
+
         Collection<String> activeProfiles = Arrays.asList(env.getActiveProfiles());
 
         if (activeProfiles.contains(JHipsterConstants.SPRING_PROFILE_PRODUCTION)) {
@@ -138,7 +149,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
                         .map(this::toProblem)
                         .orElse(null));
             }
-    
+
             if (throwable instanceof DataAccessException) {
                 return Problem.builder()
                     .withType(type)
@@ -150,7 +161,7 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
                         .map(this::toProblem)
                         .orElse(null));
             }
-    
+
             if (containsPackageName(throwable.getMessage())) {
                 return Problem.builder()
                     .withType(type)
