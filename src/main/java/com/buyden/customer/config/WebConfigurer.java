@@ -15,6 +15,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.*;
+import java.util.List;
 
 /**
  * Configuration of web application with Servlet 3.0 APIs.
@@ -46,11 +47,17 @@ public class WebConfigurer implements ServletContextInitializer {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = jHipsterProperties.getCors();
-        if (config.getAllowedOrigins() != null && !config.getAllowedOrigins().isEmpty()) {
-            log.debug("Registering CORS filter");
-            source.registerCorsConfiguration("/api/**", config);
-            source.registerCorsConfiguration("/management/**", config);
-            source.registerCorsConfiguration("/v2/api-docs", config);
+        try {
+            List<String> allowedOrigins = config.getAllowedOrigins();
+            if (config.getAllowedOrigins() != null && !allowedOrigins.isEmpty()) {
+                log.debug("Registering CORS filter");
+                source.registerCorsConfiguration("/api/**", config);
+                source.registerCorsConfiguration("/management/**", config);
+                source.registerCorsConfiguration("/v2/api-docs", config);
+            }
+        }
+        catch(NullPointerException e) {
+            log.debug("No Origins configuration");
         }
         return new CorsFilter(source);
     }

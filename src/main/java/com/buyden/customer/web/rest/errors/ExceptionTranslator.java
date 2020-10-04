@@ -73,11 +73,12 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         }
         ProblemBuilder builder = Problem.builder();
         try {
+            String requestUri = request.getNativeRequest(HttpServletRequest.class).getRequestURI();
             builder
                 .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
                 .withStatus(problem.getStatus())
                 .withTitle(problem.getTitle())
-                .with(PATH_KEY, request.getNativeRequest(HttpServletRequest.class).getRequestURI());
+                .with(PATH_KEY, requestUri);
         }
         catch (NullPointerException e) {
             log.info("Invalid URI.");
