@@ -1,0 +1,41 @@
+{
+  "name": "PaymentMethod",
+  "fields": [
+    {
+      "fieldName": "cardType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "cardNumber",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "secretCode",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "dateEnd",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customerPaymentMethod",
+      "otherEntityRelationshipName": "paymentMethod",
+      "relationshipName": "customerPaymentMethod"
+    }
+  ],
+  "changelogDate": "20201004011813",
+  "entityTableName": "payment_method",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customer",
+  "applications": "*",
+  "microserviceName": "customer"
+}

@@ -1,0 +1,51 @@
+{
+  "name": "Customer",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "middleName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "phone",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customerPaymentMethod",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "customerPaymentMethod"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "customerAddress",
+      "otherEntityRelationshipName": "customer",
+      "relationshipName": "customerAddress"
+    }
+  ],
+  "changelogDate": "20201004011713",
+  "entityTableName": "customer",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customer",
+  "applications": "*",
+  "microserviceName": "customer"
+}

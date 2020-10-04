@@ -1,0 +1,42 @@
+{
+  "name": "CustomerPaymentMethod",
+  "fields": [
+    {
+      "fieldName": "status",
+      "fieldType": "CardStatus",
+      "fieldValues": "ACTIVE,INACTIVE"
+    },
+    {
+      "fieldName": "updatedAt",
+      "fieldType": "LocalDate"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "customer",
+      "otherEntityRelationshipName": "customerPaymentMethod",
+      "relationshipName": "customer",
+      "otherEntityField": "id"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "paymentMethod",
+      "otherEntityRelationshipName": "customerPaymentMethod",
+      "relationshipName": "paymentMethod",
+      "otherEntityField": "id"
+    }
+  ],
+  "changelogDate": "20201004011913",
+  "entityTableName": "customer_payment_method",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "customer",
+  "applications": "*",
+  "microserviceName": "customer"
+}
