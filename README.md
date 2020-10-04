@@ -1,8 +1,6 @@
-# customer
+# order
 
-This application was generated using JHipster 6.10.3, you can find documentation and help at [https://www.jhipster.tech/documentation-archive/v6.10.3](https://www.jhipster.tech/documentation-archive/v6.10.3).
-
-This is a "microservice" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
+This is a "microservice" application intended to be part of a microservice architecture,
 
 This application is configured for Service Discovery and Configuration with the JHipster-Registry. On launch, it will refuse to start if it is not able to connect to the JHipster-Registry at [http://localhost:8761](http://localhost:8761). For more information, read our documentation on [Service Discovery and Configuration with the JHipster-Registry][].
 
@@ -34,7 +32,7 @@ Refer to [Doing API-First development][] for more details.
 
 ### Packaging as jar
 
-To build the final jar and optimize the customer application for production, run:
+To build the final jar and optimize the order application for production, run:
 
 ```
 
@@ -51,8 +49,6 @@ java -jar target/*.jar
 
 
 ```
-
-Refer to [Using JHipster in production][] for more details.
 
 ### Packaging as war
 
@@ -132,18 +128,4 @@ For more information refer to [Using Docker and Docker-Compose][], this page als
 
 ## Continuous Integration (optional)
 
-To configure CI for your project, run the ci-cd sub-generator (`jhipster ci-cd`), this will let you generate configuration files for a number of Continuous Integration systems. Consult the [Setting up Continuous Integration][] page for more information.
-
-[jhipster homepage and latest documentation]: https://www.jhipster.tech
-[jhipster 6.10.3 archive]: https://www.jhipster.tech/documentation-archive/v6.10.3
-[doing microservices with jhipster]: https://www.jhipster.tech/documentation-archive/v6.10.3/microservices-architecture/
-[using jhipster in development]: https://www.jhipster.tech/documentation-archive/v6.10.3/development/
-[service discovery and configuration with the jhipster-registry]: https://www.jhipster.tech/documentation-archive/v6.10.3/microservices-architecture/#jhipster-registry
-[using docker and docker-compose]: https://www.jhipster.tech/documentation-archive/v6.10.3/docker-compose
-[using jhipster in production]: https://www.jhipster.tech/documentation-archive/v6.10.3/production/
-[running tests page]: https://www.jhipster.tech/documentation-archive/v6.10.3/running-tests/
-[code quality page]: https://www.jhipster.tech/documentation-archive/v6.10.3/code-quality/
-[setting up continuous integration]: https://www.jhipster.tech/documentation-archive/v6.10.3/setting-up-ci/
-[openapi-generator]: https://openapi-generator.tech
-[swagger-editor]: https://editor.swagger.io
-[doing api-first development]: https://www.jhipster.tech/documentation-archive/v6.10.3/doing-api-first-development/
+Consult the [Setting up Continuous Integration][] page for more information.
