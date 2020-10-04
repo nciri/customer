@@ -1,9 +1,12 @@
 package com.buyden.customer.web.rest.errors;
 
+import com.buyden.customer.CustomerApp;
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.web.util.HeaderUtil;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.ConcurrencyFailureException;
 import org.springframework.dao.DataAccessException;
@@ -41,6 +44,7 @@ import java.util.stream.Collectors;
 @ControllerAdvice
 public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait {
 
+    private static final Logger log = LoggerFactory.getLogger(ExceptionTranslator.class);
     private static final String FIELD_ERRORS_KEY = "fieldErrors";
     private static final String MESSAGE_KEY = "message";
     private static final String PATH_KEY = "path";
@@ -67,14 +71,18 @@ public class ExceptionTranslator implements ProblemHandling, SecurityAdviceTrait
         if (!(problem instanceof ConstraintViolationProblem || problem instanceof DefaultProblem)) {
             return entity;
         }
-        String uri_request = (request.getNativeRequest(HttpServletRequest.class).getRequestURI()).equals(null)
-                    ? "" : request.getNativeRequest(HttpServletRequest.class).getRequestURI();
-        ProblemBuilder builder = Problem.builder()
-            .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
-            .withStatus(problem.getStatus())
-            .withTitle(problem.getTitle())
-            .with(PATH_KEY, uri_request);
-
+        ProblemBuilder builder = Problem.builder();
+        try {
+            builder
+                .withType(Problem.DEFAULT_TYPE.equals(problem.getType()) ? ErrorConstants.DEFAULT_TYPE : problem.getType())
+                .withStatus(problem.getStatus())
+                .withTitle(problem.getTitle())
+                .with(PATH_KEY, request.getNativeRequest(HttpServletRequest.class).getRequestURI());
+        }
+        catch (NullPointerException e) {
+            log.info("Invalid URI.");
+            log.trace("Invalid URI trace.", e);
+        }
         if (problem instanceof ConstraintViolationProblem) {
             builder
                 .with(VIOLATIONS_KEY, ((ConstraintViolationProblem) problem).getViolations())
