@@ -933,11 +933,6 @@
                 <!-- default Spring profiles -->
                 <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>
             </properties>
-            <properties>
-                <sonar.projectKey>nciri_customer</sonar.projectKey>
-                <sonar.organization>nciri</sonar.organization>
-                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-            </properties>
         </profile>
         <profile>
             <id>prod</id>
@@ -1089,6 +1084,14 @@
                     </plugins>
                 </pluginManagement>
             </build>
+        </profile>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.projectKey>nciri_customer</sonar.projectKey>
+                <sonar.organization>nciri</sonar.organization>
+                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+            </properties>
         </profile>
         <!-- jhipster-needle-maven-add-profile -->
     </profiles>
